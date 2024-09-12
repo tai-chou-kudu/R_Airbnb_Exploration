@@ -1,0 +1,6 @@
+---
+title: "Airbnb_Exploration"
+format: pdf
+editor: visual
+author: Tai Chou-Kudu
+---
