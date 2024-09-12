@@ -84,7 +84,7 @@ ggplot(clean_data, aes(x = price)) +
 
 **Data Visualization Improvements**
 
-This isn't the best use of space, as Bed-Stuy shows an outlier of maximum price in its histogram chart. A future idea is to normalize the data or transform to account for the outlier, so that we can see more of the data for each neighborhood, instead of it looking vertically compressed or barely visible.
+The spatial layout has room for improvement. Bed-Stuy shows an outlier of maximum price in its histogram chart, which skews data visualization and leads to scale distortion. A future idea is to normalize the data or transform to account for the outlier, so that we can see more of the data for each neighborhood, instead of the scale distortion creating a "vertically squished" effect.
 
 **Further Data Exploration**
 
