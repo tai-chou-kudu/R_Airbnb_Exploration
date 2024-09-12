@@ -1,5 +1,5 @@
 ---
-title: "Airbnb_Exploration"
+title: "The Airbnb Market in NYC: An Exploration Data Analysis"
 editor: visual
 author: Tai Chou-Kudu
 format: pdf
