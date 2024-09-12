@@ -1,5 +1,5 @@
 ---
-title: "The Airbnb Market in NYC: An Exploration Data Analysis"
+title: "The Airbnb Market in NYC: A Brief Exploratory Data Analysis using R"
 editor: visual
 author: Tai Chou-Kudu
 format: pdf
@@ -36,6 +36,7 @@ nycbnb = nycbnb |>
       review_scores_rating, 
       number_of_reviews, 
       listing_url )
+
 ```
 
 **Initial Exploration**
@@ -47,6 +48,8 @@ A: The dataset has `r nrow(nycbnb)` rows.
 Q: What does each row in the dataset represent?
 
 A: Each row represents an Airbnb listing. Each column represents an aspect of the listing, such as number of bedrooms, neighborhood location, price of rental, or listing url.
+
+{{< pagebreak >}}
 
 **Data Preparation**
 
