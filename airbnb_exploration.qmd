@@ -46,7 +46,7 @@ A: The dataset has `r nrow(nycbnb)` rows.
 
 Q: What does each row in the dataset represent?
 
-A: Each row represents an Airbnb listing. Each column represents and aspect of the listing, such as number of bedrooms, neighborhood location, price of rental, or listing url.
+A: Each row represents an Airbnb listing. Each column represents an aspect of the listing, such as number of bedrooms, neighborhood location, price of rental, or listing url.
 
 **Data Preparation**
 
@@ -82,6 +82,10 @@ ggplot(clean_data, aes(x = price)) +
   )
 ```
 
+**Data Visualization Improvements**
+
+This isn't the best use of space, as Bed-Stuy shows an outlier of maximum price in its histogram chart. A future idea is to normalize the data or transform to account for the outlier, so that we can see more of the data for each neighborhood, instead of it looking vertically compressed or barely visible.
+
 **Further Data Exploration**
 
 Identity the neighborhoods city-wide with the top five median listing prices that have a minimum of 50 listings.
@@ -107,7 +111,8 @@ filtered_data <- clean_data %>%
 
 ```
 
-```{r}
+```{r, message = FALSE}
+#|mmessage: false
 ggplot(filtered_data, aes(x = price, y = neighborhood)) +
   geom_density_ridges(fill = "skyblue", color = "black", alpha = 0.6) +
   labs(title = "Distribution of Listing Prices in Top 5 Neighborhoods",
@@ -146,12 +151,14 @@ summary_stats
 
 Boerum Hill and Carroll Gardens show the highest mean price and lowest minimum price of Airbnb rentals. These are more upscale neighborhoods, and that is reflected in these summary statistics. Rentals generally start at higher prices in Boerum Hill, as seen in the ridge distribution chart.
 
-Clinton Hill, Greenpoint, and Park Slope share the lowest minimum prices of Airbnb rentals. Park Slope seems to have a greater amount of highly priced rentals than the other 2 neighborhoods, judging by the distribution charts. The maximum price, however is highest in Greenpoint, showing the upscale atmosphere of the neighborhood. Park Slope and Clinton Hill, perhaps, have various areas of the neighborhood, some that may be considered lower in market value. Clinton Hill has the lowest median price and mean price of the 5 neighborhoods, which isn't surprising to me as a New Yorker. I think this speaks to the rapid gentrification of Clinton Hill over the past decade, and the fact that some areas are still considered "shady". However, noise complaints may be a potential factor to consider, among other factors. Park Slope is considered a wealthy area, but some areas are super wealthy, while others have dominantly middle-class residents. A comparison of resident income/wealth data with these Airbnb rental datasets could provide additional insights.
+Clinton Hill, Greenpoint, and Park Slope share the lowest minimum prices of Airbnb rentals. Park Slope seems to have a greater amount of highly priced rentals than the other 2 neighborhoods, judging by the distribution charts. The maximum price, however is highest in Greenpoint, showing the upscale atmosphere of the neighborhood. Park Slope and Clinton Hill, perhaps, have various areas of the neighborhood, some that may be considered lower in market value. Clinton Hill has the lowest median price and mean price of the 5 neighborhoods, which isn't surprising to me as a New Yorker. I think this speaks to the rapid gentrification of Clinton Hill over the past decade, and the fact that some areas are still considered "shady". However, noise complaints may be a potential factor to consider, among other factors. Park Slope is considered a wealthy area, but some areas are super wealthy, while others may have predominantly middle-class residents. A comparison of resident income/wealth data with these Airbnb rental datasets could provide additional insights.
 
 Create a visualization that will help you compare the distribution of review scores (`review_scores_rating`) across neighborhoods.
 
 ```{r filter data to show neighborhoods}
-neighborhoods_of_interest <- c("Bedford-Stuyvesant", "East New York", "Crown Heights", "Flatbush", "Sunset Park")
+neighborhoods_of_interest <- c("Bedford-Stuyvesant", 
+                               "East New York", "Crown Heights",
+                               "Flatbush", "Sunset Park")
 
 filtered_data <- nycbnb %>%
   filter(!is.na(review_scores_rating)) %>%
@@ -160,7 +167,9 @@ filtered_data <- nycbnb %>%
 ```
 
 ```{r}
-ggplot(filtered_data, aes(x = neighborhood, y = review_scores_rating, fill = neighborhood)) +
+ggplot(filtered_data, aes(x = neighborhood, 
+                          y = review_scores_rating, 
+                          fill = neighborhood)) +
   geom_boxplot() +
   labs(title = "Distribution of Review Scores Across Neighborhoods",
        x = "Neighborhood",
@@ -178,4 +187,4 @@ ggplot(filtered_data, aes(x = neighborhood, y = review_scores_rating, fill = nei
   )
 ```
 
-It seems like Bed-Stuy has the lowest overall range of reviews, which may be due to the rapid recent gentrification— with too many resulting factors to explain, that cause dissatisfaction for renters. I'm surprised East New York's ratings are so high because it's known as one of New York's dangerous neighborhoods. It's interesting to think about local New Yorkers' perceptions of neighborhoods—those of us who have seen the rapid change and gentrification of neighborhoods, versus those who are merely visiting from elsewhere, only seeing the neighborhood through these outside eyes or through their romanticizing of NYC.
+It seems like Bed-Stuy has the lowest overall range of reviews, which may be due to the rapid recent gentrification— with too many resulting factors and social dynamic to explain briefly, that cause dissatisfaction for renters. I'm surprised East New York's ratings are so high because it's known as one of New York's dangerous neighborhoods. It's interesting to think about local New Yorkers' perceptions of neighborhoods—those of us who have seen the rapid change and gentrification of neighborhoods, versus those who are merely visiting from elsewhere, only seeing the neighborhood through these outside eyes or through their romanticizing of NYC.
